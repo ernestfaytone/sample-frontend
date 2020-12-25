@@ -20,27 +20,27 @@ export class AuthService {
 
   // User registration
   register(user: User): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/api/auth/register', user);
+    return this.http.post('https://crud-ernest-app.herokuapp.com/api/auth/register', user);
   }
 
   // Login
   signin(user: User): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/auth/login', user);
+    return this.http.post<any>('https://crud-ernest-app.herokuapp.com/api/auth/login', user);
   }
 
   // Access user profile
   profileUser(): Observable<any> {
-    return this.http.get('http://127.0.0.1:8000/api/auth/user-list');
+    return this.http.get('https://crud-ernest-app.herokuapp.com/auth/user-list');
   }
 
   // delete user
   delete(id: any): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/auth/delete', id);
+    return this.http.post<any>('https://crud-ernest-app.herokuapp.com/auth/delete', id);
   }
 
   // update user
   updateUser(rowData: any): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/auth/update', rowData);
+    return this.http.post<any>('https://crud-ernest-app.herokuapp.com/api/auth/update', rowData);
   }
   
 }
