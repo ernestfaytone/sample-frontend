@@ -35,7 +35,7 @@ export class AuthService {
 
   // delete user
   delete(id: any): Observable<any> {
-    return this.http.post<any>('https://crud-ernest-app.herokuapp.com/auth/delete', id);
+    return this.http.post<any>('https://crud-ernest-app.herokuapp.com/api/auth/delete', id);
   }
 
   // update user
