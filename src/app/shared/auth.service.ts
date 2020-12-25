@@ -30,7 +30,7 @@ export class AuthService {
 
   // Get user list
   profileUser(): Observable<any> {
-    return this.http.get('https://crud-ernest-app.herokuapp.com/api/user-list');
+    return this.http.get('https://crud-ernest-app.herokuapp.com/api/auth/user-list');
   }
 
   // delete user
