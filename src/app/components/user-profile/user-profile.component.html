@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="card inner-main">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th style="width: 16.66%" scope="col">Id</th>
+        <th style="width: 25%"scope="col">Name</th>
+        <th style="width: 50%"scope="col">Email</th>
+        <th style="width:  8.33%"colspan="1"></th>
+        <th style="width:  8.33%"colspan="1"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of UserProfile; let i = index">
+        <td>
+          {{user.id}}
+        </td>
+        <td *ngIf="user.id != rowData.id">{{user.name}}</td>
+        <td *ngIf="editMode && user.id == rowData.id">
+          <input type="text" class="form-control" [(ngModel)]="rowData.name"required>
+        </td>
+        <td *ngIf="user.id != rowData.id">{{user.email}}</td>
+        <td *ngIf="editMode && user.id == rowData.id">
+          <input type="email" class="form-control" [(ngModel)]="rowData.email" required>
+        </td>
+        <td>
+          <button *ngIf="user.id != rowData.id" type="button" class="btn btn-success btn-sm" (click)="editUser(i)">Edit</button>
+          <button *ngIf="editMode && user.id == rowData.id" type="button" class="btn btn-success btn-sm" (click)="saveUser(i)">Save</button>
+        </td>
+        <td>
+          <button *ngIf="user.id != rowData.id" type="button" class="ml-2 btn btn-danger btn-sm" (click)="deleteUser(i)">Delete</button>
+          <button *ngIf="editMode && user.id == rowData.id" type="button" class="ml-2 btn btn-secondary btn-sm" (click)="cancelEdit(i)">Cancel</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    
+    <!-- Errors/Message -->
+    <ul *ngIf="message || errors">
+      <li class="text-danger" *ngIf="errors?.email">{{ errors?.email }}</li>
+      <li class="text-danger" *ngIf="errors?.name">{{ errors?.name }}</li>
+      <li class="text-success" *ngIf="message">{{ message }}</li>
+    </ul>
+  </div>
+</div>
