@@ -18,6 +18,7 @@
         <input type="password" class="form-control" formControlName="password_confirmation" placeholder="Confirm password">
       </div>
 
+      <mat-progress-bar mode="indeterminate" *ngIf="showProgress"></mat-progress-bar>
       <!-- Errors -->
       <ul>
         <li class="text-danger" *ngIf="errors?.name">{{ errors?.name }}</li>

@@ -10,6 +10,7 @@
           <input type="password" class="form-control" formControlName="password" placeholder="Password">
       </div>
 
+      <mat-progress-bar mode="indeterminate" *ngIf="showProgress"></mat-progress-bar>
       <!-- Errors -->
       <ul>
         <li class="text-danger" *ngIf="errors?.email">{{ errors?.email }}</li>

@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 export class SignupComponent implements OnInit {
   registerForm: FormGroup;
   errors = null;
+  showProgress: boolean;
 
   constructor(
     public router: Router,
@@ -29,16 +30,19 @@ export class SignupComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit() {
+    this.showProgress = true;
     this.authService.register(this.registerForm.value).subscribe(
       result => {
-        console.log(result);
+        this.showProgress = false;
       },
       error => {
+        this.showProgress = false;
         this.errors = error.error;
       },
       () => {
-        this.registerForm.reset()
+        this.registerForm.reset();
         this.router.navigate(['profile']);
+        this.showProgress = false;
       }
     )
   }

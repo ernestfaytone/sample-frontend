@@ -21,6 +21,7 @@ export class UserProfileComponent implements OnInit {
   errors: any;
   editMode: boolean;
   rowData: object;
+  showProgress: boolean;
   constructor(
     public router: Router,
     public authService: AuthService
@@ -42,12 +43,15 @@ export class UserProfileComponent implements OnInit {
   }
 
   deleteUser(index: any){
+    this.showProgress = true;
     this.id = this.UserProfile[index]['id'];
     this.authService.delete(this.id).subscribe(
       result => {
+        this.showProgress = false;
         this.message = result.message;
       },
       error => {
+        this.showProgress = false;
         this.errors = error.error;
       });
     this.UserProfile.splice(index, 1);
@@ -68,14 +72,17 @@ export class UserProfileComponent implements OnInit {
   saveUser(index: any){
     this.errors = null;
     this.message = null;
+    this.showProgress = true;
     this.authService.updateUser(this.rowData).subscribe(
       result => {
+        this.showProgress = false;
         this.UserProfile[index]['email'] = this.rowData['email'];
         this.UserProfile[index]['name'] = this.rowData['name'];
         this.editMode = false;
         this.message = result.message;
       },
       error => {
+        this.showProgress = false;
         this.errors = error.error;
       },
       () => {

@@ -35,7 +35,7 @@
       </tbody>
     </table>
 
-    
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgress"></mat-progress-bar>
     <!-- Errors/Message -->
     <ul *ngIf="message || errors">
       <li class="text-danger" *ngIf="errors?.email">{{ errors?.email }}</li>
